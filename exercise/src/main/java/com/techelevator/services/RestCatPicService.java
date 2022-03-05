@@ -12,7 +12,6 @@ public class RestCatPicService implements CatPicService {
 	@Override
 	public CatPic getPic() {
 		RestTemplate restTemplate = new RestTemplate();
-		//return restTemplate.getForObject("https://api.teleport.org/api/cities/geonameid:5128581/", City.class);
 		return restTemplate.getForObject("https://cat-data.netlify.app/api/pictures/random", CatPic.class);
 	}
 
