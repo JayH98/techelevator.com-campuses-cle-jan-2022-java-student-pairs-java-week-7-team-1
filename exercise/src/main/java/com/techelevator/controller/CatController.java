@@ -30,7 +30,7 @@ public class CatController {
         CatCard randomCatCard = new CatCard();
         randomCatCard.setCatFact(catFactService.getFact().getText());
         randomCatCard.setImgUrl(catPicService.getPic().getFile());
-        randomCatCard.setCaption("This cat is probably possessed");
+        //randomCatCard.setCaption("This cat is probably possessed");
         return randomCatCard;
     }
 
@@ -42,11 +42,13 @@ public class CatController {
 
 
     @RequestMapping(path = "/api/cards/{id}", method = RequestMethod.GET)
-    public CatCard list(@PathVariable long id){
+    public CatCard card(@PathVariable long id)
+            throws CatCardNotFoundException {
         return catCardDao.get(id);
     }
 
-
+    //if caption is left blank, have a way to tell user it is required instead of not saving
+    //and getting a new random catcard
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/api/cards", method = RequestMethod.POST)
     public boolean save(@Valid @RequestBody CatCard cardToSave){
